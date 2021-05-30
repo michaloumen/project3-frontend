@@ -1,6 +1,7 @@
 export default {
     products: [
         {
+            _id: '1',
             name: "Jogo Clínico Colorido",
             category: "Clínica Geral",
             image: "/images/jogoClinico.jpg",
@@ -8,6 +9,7 @@ export default {
             brand: "Golgran"
         },
         {
+            _id: '2',
             name: "Fita para Autoclave",
             category: "Biossegurança",
             image: "/images/fitaAutoclave.jpg",
@@ -15,6 +17,7 @@ export default {
             brand: "Cremer"
         },
         {
+            _id: '3',
             name: "Lima K 1ª Série",
             category: "Endodontia",
             image: "/images/limaKPrimeiraSérie.jpg",
@@ -22,6 +25,7 @@ export default {
             brand: "Golgran"
         },
         {
+            _id: '4',
             name: "Sugador Endodôntico Descartável",
             category: "Descartáveis",
             image: "/images/sugadorEndodonticoDescartavel.jpg",
@@ -29,6 +33,7 @@ export default {
             brand: "SSPlus"
         },
         {
+            _id: '5',
             name: "Kit Perio",
             category: "Periodontia",
             image: "/images/kitPerio.jpg",
@@ -36,6 +41,7 @@ export default {
             brand: "Millennium - Golgran"
         },
         {
+            _id: '6',
             name: "Lima Wave One Gold Reciprocante",
             category: "Endodontia",
             image: "/images/waveOneGold.jpg",
