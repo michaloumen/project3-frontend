@@ -1,4 +1,4 @@
-export default {
+/* export default {
     products: [
         {
             _id: '1',
@@ -49,4 +49,4 @@ export default {
             brand: "Maillefer - Densply Sirona"
         }
     ]
-}
+} */

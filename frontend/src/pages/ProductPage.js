@@ -1,29 +1,39 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import {Link} from 'react-router-dom';
-import data from '../data';
+import axios from 'axios';
 
 function ProductPage(props) {
-    const product = data.products.find(x => x._id === props.match.params.id);
+
+    const [products, setProduct] = useState([]);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            const {data} = await axios.get("http://localhost:5000/api/products");
+            setProduct(data);
+        }
+        fetchData();
+    }, [])
+
     return <div>
         <div className="back-to-result">
             <Link to="/">Voltar para resultados</Link>
         </div>
         <div className="details">
             <div className="details-image">
-                <img src={product.image} alt="product"></img>
+                <img src={products.image} alt="product"></img>
             </div>
             <div className="details-info">
                 <ul>
                     <li>
-                        <h4>{product.name}</h4>
+                        <h4>{products.name}</h4>
                     </li>
                     <li>
-                        <b>Preço: R$ {product.price}</b>
+                        <b>Preço: R$ {products.price}</b>
                     </li>
                     <li>
                         Descrição: 
                         <div>
-                            {product.description}
+                            {products.description}
                         </div>
                     </li>
                 </ul>
@@ -31,10 +41,10 @@ function ProductPage(props) {
             <div className="details-action">
                 <ul>
                     <li>
-                        Preço: R$ {product.price}
+                        Preço: R$ {products.price}
                     </li>
                     <li>
-                        Status: {product.status}
+                        Status: {products.status}
                     </li>
                     <li>
                         Quantidade: <select>
