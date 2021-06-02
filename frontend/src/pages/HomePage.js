@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import {Link} from 'react-router-dom';
-import axios from 'axios';
+import ApiService from '../services/api.services';
 
 function HomePage (props) {
 /* HOOK */
@@ -17,8 +17,9 @@ function HomePage (props) {
 
     const getProducts = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/api/products");
-        setProduct(response.data);
+        const products = await ApiService.getProducts();
+
+        setProduct(products);
       } catch (error) {
         console.log(error);
       }
