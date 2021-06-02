@@ -1,18 +1,25 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
+import ApiService from '../services/api.services';
 
 function ProductPage(props) {
+    const [qty, setQty] = useState(1);
 
     const [products, setProduct] = useState([]);
 
-    useEffect(() => {
-        const fetchData = async () => {
-            const { data } = await axios.get("http://localhost:5000/api/products");
-            setProduct(data);
+    const getProducts = async () => {
+        try {
+            const products = await ApiService.getProducts();
+
+            setProduct(products);
+        } catch (error) {
+            console.log(error);
         }
-        fetchData();
-    }, [])
+    };
+
+    useEffect(() => {
+        getProducts();
+    }, []);
 
     const location = window.location.pathname.split("/product/");
     const productsFiltered = products.filter(product =>
@@ -54,11 +61,10 @@ function ProductPage(props) {
                                 Status: {product.status}
                             </li>
                             <li>
-                                Quantidade: <select>
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                    <option>4</option>
+                                Quantidade: <select value={qty} onChange={(e) => { setQty(e.target.value) }}>
+                                    {[...Array(product.countInStock).keys()].map(x =>
+                                        <option key={x + 1} value={x + 1}>{x + 1}</option> //pra deixar dinâmico a quantidade que tem em estoque
+                                    )}
                                 </select>
                             </li>
                             <li>
