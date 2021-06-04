@@ -21,6 +21,10 @@ function ProductPage(props) {
         getProducts();
     }, []);
 
+    const handleAddToCart = () => {
+        props.history.push("/cart/" + props.match.params.id + "?qty" + qty) //vai levar para uma página de carrinho com a quantidade de items escolhido 
+    }
+
     const location = window.location.pathname.split("/product/");
     const productsFiltered = products.filter(product =>
         product._id == location[location.length - 1])
@@ -58,7 +62,7 @@ function ProductPage(props) {
                                 Preço: R$ {product.price}
                             </li>
                             <li>
-                                Status: {product.status}
+                                Status: {product.countInStock > 0 ? "Em estoque" : "Indisponível"}
                             </li>
                             <li>
                                 Quantidade: <select value={qty} onChange={(e) => { setQty(e.target.value) }}>
@@ -68,7 +72,8 @@ function ProductPage(props) {
                                 </select>
                             </li>
                             <li>
-                                <button className="button">Adicionar ao carrinho</button>
+                                {product.countInStock > 0 && <button onClick={handleAddToCart} className="button">Adicionar ao carrinho</button>} {/* se tiver indisponível, esconder */}
+
                             </li>
                         </ul>
                     </div>
