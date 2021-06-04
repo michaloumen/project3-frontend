@@ -3,29 +3,16 @@ import { BrowserRouter, Route, Link } from 'react-router-dom';
 import './App.css';
 import HomePage from './pages/HomePage';
 import ProductPage from './pages/ProductPage';
+import Nav from "./components/Nav";
 
 function App() {
-    const openMenu = () => {
-        document.querySelector(".sidebar").classList.add("open")
-    }
     const closeMenu = () => {
         document.querySelector(".sidebar").classList.remove("open")
     }
     return (
         <BrowserRouter>
             <div className="grid-container">
-                <header className="header">
-                    <div className="brand">
-                        <button onClick={openMenu}>
-                            &#9776;
-                    </button>
-                        <Link to="/">Dental</Link>
-                    </div>
-                    <div className="header-links">
-                        <a href="cart.html">Carrinho</a>
-                        <a href="signin.html">Cadastrar</a>
-                    </div>
-                </header>
+                <Nav />
                 <aside className="sidebar">
                     <h3>Categorias</h3>
                     <button className="sidebar-close-button" onClick={closeMenu}>x</button>
