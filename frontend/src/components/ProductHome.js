@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 
-const ProductCart = ({ product }) => {
+const ProductHome = ({ product }) => {
     return <ul className="products">
         <div className="product">
             <Link to={'/product/' + product._id}>
@@ -16,4 +16,4 @@ const ProductCart = ({ product }) => {
     </ul>
 }
 
-export default ProductCart;
+export default ProductHome;

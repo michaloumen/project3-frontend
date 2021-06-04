@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import ProductCart from '../components/ProductCart';
+import ProductHome from '../components/ProductHome';
 import ApiService from '../services/api.services';
 
 function HomePage(props) {
@@ -23,7 +23,7 @@ function HomePage(props) {
   return <ul className="product">
     <div className="products">
       {products.map((product) => (
-        <li><ProductCart key={product._id} product={product} /></li>
+        <li><ProductHome key={product._id} product={product} /></li>
       ))}
     </div>
   </ul>
