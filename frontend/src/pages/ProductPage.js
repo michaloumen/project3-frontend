@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import ApiService from '../services/api.services';
 
 function ProductPage(props) {
+    console.log(props)
     const [qty, setQty] = useState(1);
 
     const [products, setProduct] = useState([]);
@@ -22,12 +23,20 @@ function ProductPage(props) {
     }, []);
 
     const handleAddToCart = () => {
-        props.history.push("/cart/" + props.match.params.id + "?qty" + qty) //vai levar para uma página de carrinho com a quantidade de items escolhido 
+        /*  props.history.push("/cart/" + props.match.params.id + "?qty" + qty) //vai levar para uma página de carrinho com a quantidade de items escolhido  */
+        const productsFiltered = products.filter(product =>
+            product._id === location[location.length - 1])
+
+        props.setCart([{
+            name: productsFiltered[0].name,
+            price: productsFiltered[0].price,
+            quantity: qty
+        }])
     }
 
     const location = window.location.pathname.split("/product/");
     const productsFiltered = products.filter(product =>
-        product._id == location[location.length - 1])
+        product._id === location[location.length - 1])
     //filter
     return <div className="product">
         {productsFiltered.map(product =>

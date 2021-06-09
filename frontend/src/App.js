@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { BrowserRouter, Route, Link } from 'react-router-dom';
 import './App.css';
 import HomePage from './pages/HomePage';
@@ -6,6 +6,10 @@ import ProductPage from './pages/ProductPage';
 import Nav from "./components/Nav";
 
 function App() {
+    const [cart, setCart] = useState([]);
+    //setCart atualiza o carrinho
+    console.log(cart)
+
     const closeMenu = () => {
         document.querySelector(".sidebar").classList.remove("open")
     }
@@ -36,7 +40,8 @@ function App() {
                 </aside>
                 <main className="main">
                     <div className="content">
-                        <Route path="/product/:id" component={ProductPage} />
+                        <Route path="/product/:id" render={(props) => <ProductPage {...props} setCart={setCart} />} />
+                        {/* props é todas as props que o component router passa pro componente de página */}
                         <Route path="/" exact={true} component={HomePage} />
                     </div>
                 </main>

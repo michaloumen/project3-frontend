@@ -6,7 +6,7 @@ class ApiService {
     }
 
     getProducts = async () => {
-        const {data} = await this.api.get("http://localhost:5000/api/products");
+        const { data } = await this.api.get("http://localhost:5000/api/products");
         return data;
     }
 }
