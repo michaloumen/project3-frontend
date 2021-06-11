@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import ApiService from '../services/api.services';
 import { detailsProduct } from '../actions/productActions';
+import { addToCart } from '../actions/cartActions';
 
 function ProductPage(props) {
     /* console.log(props) */
@@ -20,15 +21,20 @@ function ProductPage(props) {
 
     //fiz com o Henrique
     const handleAddToCart = () => {
-        const location = window.location.pathname.split("/product/");
-        const productsFiltered = products.filter(product =>
-            product._id === location[location.length - 1])
+        dispatch(addToCart(props.match.params.id, Number(qty)));
 
-        props.setCart([{
-            name: productsFiltered[0].name,
-            price: productsFiltered[0].price,
-            quantity: qty
-        }])
+
+        /*         const location = window.location.pathname.split("/product/");
+                const productsFiltered = products.filter(product =>
+                    product._id === location[location.length - 1])
+        
+                props.setCart([{
+                    name: productsFiltered[0].name,
+                    price: productsFiltered[0].price,
+                    quantity: qty
+                }]) */
+
+        props.history.push("/cart/" + props.match.params.id + "?qty" + qty)
     }
 
     //filter
@@ -53,7 +59,7 @@ function ProductPage(props) {
                                 </li>
                                 <li>
                                     Descrição:
-                            <div>
+                                    <div>
                                         {product.description}
                                     </div>
                                 </li>

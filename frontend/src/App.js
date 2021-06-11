@@ -4,6 +4,7 @@ import './App.css';
 import HomePage from './pages/HomePage';
 import ProductPage from './pages/ProductPage';
 import Nav from "./components/Nav";
+import CartPage from './pages/CartPage';
 
 function App() {
     const [cart, setCart] = useState([]);
@@ -42,6 +43,7 @@ function App() {
                     <div className="content">
                         <Route path="/product/:id" render={(props) => <ProductPage {...props} setCart={setCart} />} />
                         {/* props é todas as props que o component router passa pro componente de página */}
+                        <Route path="/cart/:id?" component={CartPage} /> {/* ? porque o id é opcional */}
                         <Route path="/" exact={true} component={HomePage} />
                     </div>
                 </main>
