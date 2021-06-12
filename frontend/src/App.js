@@ -5,6 +5,7 @@ import HomePage from './pages/HomePage';
 import ProductPage from './pages/ProductPage';
 import Nav from "./components/Nav";
 import CartPage from './pages/CartPage';
+import SigninPage from './pages/SigninPage';
 
 function App() {
     const [cart, setCart] = useState([]);
@@ -41,6 +42,7 @@ function App() {
                 </aside>
                 <main className="main">
                     <div className="content">
+                        <Route path="/signin" component={SigninPage} />
                         <Route path="/product/:id" render={(props) => <ProductPage {...props} setCart={setCart} />} />
                         {/* props é todas as props que o component router passa pro componente de página */}
                         <Route path="/cart/:id?" component={CartPage} /> {/* ? porque o id é opcional */}
@@ -49,7 +51,7 @@ function App() {
                 </main>
                 <footer className="footer">
                     All right reserved.
-            </footer>
+                </footer>
             </div>
         </BrowserRouter>
     );

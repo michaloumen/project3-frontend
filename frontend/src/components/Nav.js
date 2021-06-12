@@ -14,7 +14,8 @@ const Nav = () => {
             </div>
             <div className="header-links">
                 <a href="cart.html">Carrinho</a>
-                <a href="signin.html">Cadastrar</a>
+                <a href="/signin">Entrar</a>
+                <Link to="/signin" />
             </div>
         </header>
     )
