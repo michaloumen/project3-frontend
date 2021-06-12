@@ -7,6 +7,7 @@ import ProductPage from './pages/ProductPage';
 import CartPage from './pages/CartPage';
 import SigninPage from './pages/SigninPage';
 import RegisterPage from './pages/RegisterPage';
+import AddProductPage from './pages/AddProductPage';
 
 function App() {
     const userSignin = useSelector(state => state.userSignin);
@@ -63,6 +64,7 @@ function App() {
                 </aside>
                 <main className="main">
                     <div className="content">
+                        <Route path="/products" component={AddProductPage} />
                         <Route path="/register" component={RegisterPage} />
                         <Route path="/signin" component={SigninPage} />
                         <Route path="/product/:id" render={(props) => <ProductPage {...props} setCart={setCart} />} />
