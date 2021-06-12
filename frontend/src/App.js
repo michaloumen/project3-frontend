@@ -1,24 +1,45 @@
 import React, { useState } from 'react';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { BrowserRouter, Route, Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import './App.css';
 import HomePage from './pages/HomePage';
 import ProductPage from './pages/ProductPage';
-import Nav from "./components/Nav";
 import CartPage from './pages/CartPage';
 import SigninPage from './pages/SigninPage';
+import RegisterPage from './pages/RegisterPage';
 
 function App() {
+    const userSignin = useSelector(state => state.userSignin);
+    const { userInfo } = userSignin;
+
     const [cart, setCart] = useState([]);
     //setCart atualiza o carrinho
     console.log(cart)
 
+    const openMenu = () => {
+        document.querySelector(".sidebar").classList.add("open")
+    }
     const closeMenu = () => {
         document.querySelector(".sidebar").classList.remove("open")
     }
     return (
         <BrowserRouter>
+            <header className="header">
+                <div className="brand">
+                    <button onClick={openMenu}>
+                        &#9776;
+                    </button>
+                    <Link to="/">Dental</Link>
+                </div>
+                <div className="header-links">
+                    <a href="cart.html">Carrinho</a>
+                    {
+                        userInfo ? <Link to="/profile">Bem vind@, {userInfo.name}</Link> :
+                            <Link to="/signin">Entrar</Link>
+                    }
+                </div>
+            </header>
             <div className="grid-container">
-                <Nav />
                 <aside className="sidebar">
                     <h3>Categorias</h3>
                     <button className="sidebar-close-button" onClick={closeMenu}>x</button>
@@ -42,6 +63,7 @@ function App() {
                 </aside>
                 <main className="main">
                     <div className="content">
+                        <Route path="/register" component={RegisterPage} />
                         <Route path="/signin" component={SigninPage} />
                         <Route path="/product/:id" render={(props) => <ProductPage {...props} setCart={setCart} />} />
                         {/* props é todas as props que o component router passa pro componente de página */}

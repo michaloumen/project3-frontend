@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+/* import { Link } from 'react-router-dom';
 
 const Nav = () => {
     const openMenu = () => {
@@ -21,4 +21,4 @@ const Nav = () => {
     )
 }
 
-export default Nav;
+export default Nav; */
