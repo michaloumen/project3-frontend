@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import ApiService from '../services/api.services';
 import { detailsProduct } from '../actions/productActions';
 import { addToCart } from '../actions/cartActions';
 
