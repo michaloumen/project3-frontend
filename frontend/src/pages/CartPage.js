@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addToCart, removeFromCart } from '../actions/cartActions';
 import { Link } from 'react-router-dom';
@@ -8,8 +8,8 @@ function CartPage(props) {
     const { cartItems } = cart;
     console.log(cartItems)
 
-    const productId = props.match.params.id;
-    const qty = 1;
+    /*     const productId = props.match.params.id;
+        const qty = 1; */
     const dispatch = useDispatch();
     const removeFromCartHandler = (productId) => {
         dispatch(removeFromCart(productId));

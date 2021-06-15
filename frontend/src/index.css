@@ -62,6 +62,10 @@ button {
   text-decoration: none;
 }
 
+.header-links {
+  padding-right: 2rem;
+}
+
 .header-links a{
   color: #ffffff;
   text-decoration: none;
