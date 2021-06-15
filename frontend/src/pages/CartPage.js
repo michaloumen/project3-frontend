@@ -23,7 +23,7 @@ function CartPage(props) {
         }, []) */
 
     const checkoutHandler = () => {
-        props.history.push("/signun?redirect=shipping");
+        props.history.push("/shipping"); /* eu mudei isso aqui */
     }
 
     return <div className="cart">

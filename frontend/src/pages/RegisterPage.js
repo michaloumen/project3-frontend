@@ -13,9 +13,10 @@ function RegisterPage(props) {
     const { loading, userInfo, error } = userRegister;
     const dispatch = useDispatch();
 
+    const redirect = props.location.search ? props.location.search.split('=')[1] : '/';
     useEffect(() => {
         if (userInfo) {
-            props.history.push("/");
+            props.history.push(redirect);
         }
     }, [userInfo]); //se mudar o userinfo, o if do useEffect vai acontecer
 
@@ -58,7 +59,7 @@ function RegisterPage(props) {
                     <button type="submit" className="button primary">Registrar</button>
                 </li>
                 <li>
-                    Já tem uma conta? <Link to="/signin">Entrar</Link>
+                    <Link to={redirect === '/' ? 'signin' : 'signin?redirect=' + redirect}>Já tem uma conta?</Link>
                 </li>
             </ul>
         </form>

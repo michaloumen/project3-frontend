@@ -8,6 +8,9 @@ import CartPage from './pages/CartPage';
 import SigninPage from './pages/SigninPage';
 import RegisterPage from './pages/RegisterPage';
 import AddProductPage from './pages/AddProductPage';
+import ShippingPage from './pages/ShippingPage';
+import PaymentPage from './pages/PaymentPage';
+import PlaceOrderPage from './pages/PlaceOrderPage';
 
 function App() {
     const userSignin = useSelector(state => state.userSignin);
@@ -33,7 +36,7 @@ function App() {
                     <Link to="/">Dental</Link>
                 </div>
                 <div className="header-links">
-                    <a href="cart.html">Carrinho</a>
+                    <Link to="/cart/">Carrinho</Link>{/* tinha que ser cart/id? */}
                     {
                         userInfo ? <Link to="/products">Bem vind@, {userInfo.name}</Link> :
                             <Link to="/signin">Entrar</Link>
@@ -64,6 +67,9 @@ function App() {
                 </aside>
                 <main className="main">
                     <div className="content">
+                        <Route path="/placeorder" component={PlaceOrderPage} />
+                        <Route path="/payment" component={PaymentPage} />
+                        <Route path="/shipping" component={ShippingPage} />
                         <Route path="/products" component={AddProductPage} />
                         <Route path="/register" component={RegisterPage} />
                         <Route path="/signin" component={SigninPage} />

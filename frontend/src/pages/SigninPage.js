@@ -11,9 +11,10 @@ function SigninPage(props) {
     const { loading, userInfo, error } = userSignin;
     const dispatch = useDispatch();
 
+    const redirect = props.location.search ? props.location.search.split('=')[1] : '/';
     useEffect(() => {
         if (userInfo) {
-            props.history.push("/");
+            props.history.push(redirect);
         }
     }, [userInfo]); //se mudar o userinfo, o if do useEffect vai acontecer
 
@@ -49,7 +50,7 @@ function SigninPage(props) {
                     Nov@ na Dental?
                 </li>
                 <li>
-                    <Link to="/register" className="button secondary text-center">Crie sua conta</Link>
+                    <Link to={redirect === '/' ? 'register' : 'register?redirect=' + redirect} className="button secondary text-center">Crie sua conta</Link>
                 </li>
             </ul>
         </form>
