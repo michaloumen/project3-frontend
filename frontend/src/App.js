@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { BrowserRouter, Route, Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { signout } from './actions/userActions';
 import './App.css';
 import HomePage from './pages/HomePage';
 import ProductPage from './pages/ProductPage';
@@ -15,10 +16,12 @@ import PlaceOrderPage from './pages/PlaceOrderPage';
 function App() {
     const userSignin = useSelector(state => state.userSignin);
     const { userInfo } = userSignin;
-
-    const [cart, setCart] = useState([]);
-    //setCart atualiza o carrinho
-    console.log(cart)
+    const [cart, setCart] = useState([]); //setCart atualiza o carrinho
+    /* console.log(cart) */
+    const dispatch = useDispatch();
+    const signoutHandler = () => {
+        dispatch(signout());
+    }
 
     const openMenu = () => {
         document.querySelector(".sidebar").classList.add("open")
@@ -38,7 +41,16 @@ function App() {
                 <div className="header-links">
                     <Link to="/cart/">Carrinho</Link>{/* tinha que ser cart/id? */}
                     {
-                        userInfo ? <Link to="/products">Bem vind@, {userInfo.name}</Link> :
+                        userInfo ?
+                            <div /* className="dropdown" */>
+                                <Link to="/products">Bem vind@, {userInfo.name}
+                                    <i className="fas fa-caret-down"></i>
+                                </Link>
+                                <ul /* className="dropdown-content" */>
+                                    <Link to="#signout" onClick={signoutHandler}>Sair</Link>
+                                </ul>
+                            </div>
+                            :
                             <Link to="/signin">Entrar</Link>
                     }
                 </div>

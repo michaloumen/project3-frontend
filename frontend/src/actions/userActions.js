@@ -6,7 +6,8 @@ import {
     USER_SIGNIN_FAIL,
     USER_REGISTER_REQUEST,
     USER_REGISTER_SUCCESS,
-    USER_REGISTER_FAIL
+    USER_REGISTER_FAIL,
+    USER_SIGNOUT
 } from "../constants/userContants";
 
 const signin = (email, password) => async (dispatch) => {
@@ -35,4 +36,10 @@ const register = (name, email, password) => async (dispatch) => {
     }
 }
 
-export { signin, register };
+const signout = () => (dispatch) => {
+    localStorage.removeItem('userInfo');
+    localStorage.removeItem('cartItems');
+    dispatch({ type: USER_SIGNOUT });
+}
+
+export { signin, register, signout };
