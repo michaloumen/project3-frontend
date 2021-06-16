@@ -4,9 +4,11 @@ html {
 }
 
 body{
-  font: 1.6rem Helvetica;
+  font-size: 1.6rem;
   height: 100vh;
   margin: 0;
+  font-family: Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
 }
 
 button {
@@ -33,10 +35,6 @@ button {
   width: 100%;
 }
 
-#root {
-  height: 100%;
-}
-
 .grid-container{
   display: grid;
   grid-template-areas: "header" "main" "footer";
@@ -45,7 +43,7 @@ button {
   height: 100%;
 }
 
-.header {
+header {
   grid-area: header;
   background-color: #203040;
   color: #ffffff;
@@ -87,6 +85,7 @@ button {
 
 .main {
   grid-area: main;
+  padding: 1rem;
 }
 
 .footer {
@@ -96,6 +95,16 @@ button {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+h1{
+  font-size: 1.8rem;
+  padding: 1rem 0;
+}
+
+h2{
+  font-size: 1.8rem;
+  padding: 1rem 0;
 }
 
 a {
@@ -149,6 +158,27 @@ a:hover{
   max-width: 34rem;
   max-height: 34rem;
 }
+
+/* img */
+img {
+  border-radius: 0.5rem;
+}
+
+img.small {
+  max-width: 1rem;
+  width: 100%;
+}
+
+img.medium {
+  max-width: 29rem;
+  width: 100%;
+}
+
+img.large {
+  width: 100%;
+}
+
+/* tentando adicionar um pouco de responsividade mas não deu muito certo kk */
 
 /* Sidebar */
 .brand button {
@@ -253,11 +283,12 @@ a:hover{
 
 /* Cart */
 .cart {
-  display: flex;
-  flex-wrap: wrap;
+  border: 0.1rem #c0c0c0 solid;
+  background-color: #f8f8f8;
+  border-radius: 0.5rem;
   margin: 1rem;
-  align-items: flex-start;
 }
+
 .cart-list {
   flex: 3 1 60rem;
 }

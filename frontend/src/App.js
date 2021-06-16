@@ -46,7 +46,7 @@ function App() {
                                 <Link to="/products">Bem vind@, {userInfo.name}
                                 </Link>
                                 <ul>
-                                    <Link to="#signout" onClick={signoutHandler}>Sair</Link>
+                                    <Link to="/" onClick={signoutHandler}>Sair</Link>
                                 </ul>
                             </div>
                             :

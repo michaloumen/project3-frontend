@@ -21,9 +21,6 @@ function HomePage(props) {
 
   useEffect(() => {
     dispatch(listProducts());
-    return () => {
-      //
-    };
   }, []);
 
   return (
