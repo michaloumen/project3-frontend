@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { BrowserRouter, Route, Link } from 'react-router-dom';
+import { BrowserRouter, Route, Link, Redirect } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { signout } from './actions/userActions';
 import './App.css';
@@ -42,11 +42,10 @@ function App() {
                     <Link to="/cart/">Carrinho</Link>{/* tinha que ser cart/id? */}
                     {
                         userInfo ?
-                            <div /* className="dropdown" */>
+                            <div className="navbar">
                                 <Link to="/products">Bem vind@, {userInfo.name}
-                                    <i className="fas fa-caret-down"></i>
                                 </Link>
-                                <ul /* className="dropdown-content" */>
+                                <ul>
                                     <Link to="#signout" onClick={signoutHandler}>Sair</Link>
                                 </ul>
                             </div>

@@ -64,6 +64,12 @@ button {
 
 .header-links {
   padding-right: 2rem;
+  display: flex;
+  align-items: center;
+}
+
+.navbar > ul {
+  padding-left: 0;
 }
 
 .header-links a{
@@ -375,25 +381,11 @@ tbody>tr:nth-child(odd){
   color: #f08000;
 }
 
-/* Dropdown */
-.dropdown{
-  display: inline-block;
-  position: relative;
+.navbar{
+  display: flex;
+  align-items: center;
 }
 
-.dropdown-content{
-  position: absolute;
-  display: none;
-  right: 0;
-  min-width: 12rem;
-  padding: 1rem;
-  z-index: 1;
-  background-color: #203040;
-  margin: 0;
-  margin-top: 0.4rem;
-  border-radius: 0.5rem;
-}
-
-.dropdow:hover .dropdown-content{
-  display: block;
+.navbar > a {
+  margin-right: 0;
 }
