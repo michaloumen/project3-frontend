@@ -14,10 +14,11 @@ import PaymentPage from './pages/PaymentPage';
 import PlaceOrderPage from './pages/PlaceOrderPage';
 
 function App() {
+    const cartNumber = useSelector(state => state.cart);
+    const { cartItems } = cartNumber;
     const userSignin = useSelector(state => state.userSignin);
     const { userInfo } = userSignin;
     const [cart, setCart] = useState([]); //setCart atualiza o carrinho
-    /* console.log(cart) */
     const dispatch = useDispatch();
     const signoutHandler = () => {
         dispatch(signout());
@@ -39,7 +40,11 @@ function App() {
                     <Link to="/">Dental</Link>
                 </div>
                 <div className="header-links">
-                    <Link to="/cart/">Carrinho</Link>{/* tinha que ser cart/id? */}
+                    <Link to="/cart/">Carrinho
+                        {cartItems.length > 0 && (
+                            <span className="badge">{cartItems.length}</span>
+                        )}
+                    </Link>{/* tinha que ser cart/id? */}
                     {
                         userInfo ?
                             <div className="navbar">

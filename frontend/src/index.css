@@ -60,6 +60,16 @@ header {
   text-decoration: none;
 }
 
+.badge{
+  background-color: #f02020;
+  color: #ffffff;
+  border-radius: 50%;
+  padding: 0.2rem 0.7rem;
+  font-size: 1.4rem;
+  margin-left: 0.5rem;
+  margin-right: -0.5rem !important;
+}
+
 .header-links {
   padding-right: 2rem;
   display: flex;

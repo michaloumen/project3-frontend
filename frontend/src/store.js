@@ -5,7 +5,7 @@ import { productDeleteReducer, productDetailsReducer, productListReducer, produc
 import { cartReducer } from './reducers/cartReducers';
 import { userRegisterReducer, userSigninReducer } from './reducers/userReducers';
 
-const cartItems = Cookie.getJSON("cartItems") || [];
+/* const cartItems = Cookie.getJSON("cartItems") || []; */
 const userInfo = Cookie.getJSON('userInfo') || null;
 
 const initialState = {
