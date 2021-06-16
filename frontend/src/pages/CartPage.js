@@ -11,8 +11,8 @@ function CartPage(props) {
     /*     const productId = props.match.params.id;
         const qty = 1; */
     const dispatch = useDispatch();
-    const removeFromCartHandler = (productId) => {
-        dispatch(removeFromCart(productId));
+    const removeFromCartHandler = (id) => {
+        dispatch(removeFromCart(id));
     }
 
     /*     useEffect(() => {
@@ -33,9 +33,9 @@ function CartPage(props) {
                     <h3>
                         Carrinho de Compras
                     </h3>
-                    <div>
+                    <h3>
                         Preço
-                    </div>
+                    </h3>
                 </li>
                 {
                     cartItems.length === 0 ?
@@ -62,8 +62,8 @@ function CartPage(props) {
                                                 <option key={x + 1} value={x + 1}>{x + 1}</option>
                                             )}
                                         </select>
-                                        <button type="button" className="button" onClick={() => removeFromCartHandler(item.product)}>
-                                            Delete
+                                        <button type="button" className="button delete-button" onClick={() => removeFromCartHandler(item.product)}>
+                                            Apagar
                                         </button>
                                     </div>
                                 </div>
@@ -80,10 +80,10 @@ function CartPage(props) {
                 Subtotal ( {cartItems.reduce((a, c) => a + Number(c.qty), 0)} items)
                 :
                 $ {cartItems.reduce((a, c) => a + (Number(c.price) * Number(c.qty)), 0)}
+                <button onClick={checkoutHandler} className="button primary full-width" disabled={cartItems.length === 0}>
+                    Prossiga para pagamento
+                </button>
             </h3>
-            <button onClick={checkoutHandler} className="button primary full-width" disabled={cartItems.length === 0}>
-                Prossiga para pagamento
-            </button>
         </div>
     </div>
 }

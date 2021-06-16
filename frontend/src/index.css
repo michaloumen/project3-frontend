@@ -27,13 +27,17 @@ button {
   background-color: #f0f0f0;
 }
 
+.delete-button {
+  margin-left: 1rem;
+}
+
 .text-center {
   text-align: center;
 }
 
 .full-width {
   width: 100%;
-}
+} 
 
 .grid-container{
   display: grid;
@@ -303,10 +307,10 @@ img.large {
   flex: 3 1 60rem;
 }
 .cart-action {
-  flex: 1 1 20rem;
+  flex: 1 1 30rem;
   background-color: #f0f0f0;
   border-radius: 0.5rem;
-  padding: 1rem;
+  padding: 1rem 40rem;
 }
 .cart-list-container {
   padding: 0;
