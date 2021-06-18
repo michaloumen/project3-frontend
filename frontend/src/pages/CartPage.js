@@ -2,6 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addToCart, removeFromCart } from '../actions/cartActions';
 import { Link } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
 function CartPage(props) {
     const cart = useSelector(state => state.cart);
@@ -88,4 +89,4 @@ function CartPage(props) {
     </div>
 }
 
-export default CartPage;
+export default withRouter(CartPage);

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { register } from '../actions/userActions';
+import { register, signin } from '../actions/userActions';
 
 function RegisterPage(props) {
 
@@ -22,7 +22,8 @@ function RegisterPage(props) {
 
     const submitHandler = (e) => {
         e.preventDefault();
-        dispatch(register(name, email, password));
+        dispatch(register(name, email, password))
+        dispatch(signin(email, password));
     }
 
     return <div className="form">
@@ -59,7 +60,7 @@ function RegisterPage(props) {
                     <button type="submit" className="button primary">Registrar</button>
                 </li>
                 <li>
-                    <Link to={redirect === '/' ? 'signin' : 'signin?redirect=' + redirect}>Já tem uma conta?</Link>
+                    <Link to={redirect === '/' ? 'signin' : 'signin?redirect' + redirect}>Já tem uma conta?</Link>
                 </li>
             </ul>
         </form>

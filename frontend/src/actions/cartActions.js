@@ -4,7 +4,8 @@ import {
     CART_ADD_ITEM,
     CART_REMOVE_ITEM,
     CART_SAVE_SHIPPING,
-    CART_SAVE_PAYMENT_METHOD
+    CART_SAVE_PAYMENT_METHOD,
+    CART_CLEAR
 } from "../constants/cartConstants";
 
 const addToCart = (productId, qty) => async (dispatch, getState) => {
@@ -36,4 +37,8 @@ const savePaymentMethod = (data) => (dispatch) => {
     dispatch({ type: CART_SAVE_PAYMENT_METHOD, payload: data });
 }
 
-export { addToCart, removeFromCart, saveShipping, savePaymentMethod }
+const clearCart = () => (dispatch) => {
+    dispatch({ type: CART_CLEAR, payload: [] });
+}
+
+export { addToCart, removeFromCart, saveShipping, savePaymentMethod, clearCart }

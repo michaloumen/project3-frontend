@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Route, Link, Redirect } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { signout } from './actions/userActions';
+import { clearCart } from './actions/cartActions';
 import './App.css';
 import HomePage from './pages/HomePage';
 import ProductPage from './pages/ProductPage';
@@ -12,15 +13,30 @@ import AddProductPage from './pages/AddProductPage';
 import ShippingPage from './pages/ShippingPage';
 import PaymentPage from './pages/PaymentPage';
 import PlaceOrderPage from './pages/PlaceOrderPage';
+import ProtectedRoute from './components/ProtectedRoute';
 
-function App() {
+function App(props) {
     const cartNumber = useSelector(state => state.cart);
     const { cartItems } = cartNumber;
     const userSignin = useSelector(state => state.userSignin);
     const { userInfo } = userSignin;
     const [cart, setCart] = useState([]); //setCart atualiza o carrinho
     const dispatch = useDispatch();
+
+    const [isAuth, setIsAuth] = useState(false);
+    const routeProtected = () => {
+        if (userInfo) {
+            setIsAuth(true)
+        }
+    }
+
+    useEffect(() => {
+        routeProtected();
+    }, [userInfo])
+    //quando acessar a página não vai ter userInfo e daí quando faz signin ele chama o routeProtected e passa true pra poder acessar as rotas
+
     const signoutHandler = () => {
+        dispatch(clearCart());
         dispatch(signout());
     }
 
@@ -46,12 +62,12 @@ function App() {
                         )}
                     </Link>{/* tinha que ser cart/id? */}
                     {
-                        userInfo ?
+                        userInfo && isAuth ?
                             <div className="navbar">
                                 <Link to="/products">Bem vind@, {userInfo.name}
                                 </Link>
                                 <ul>
-                                    <Link to="/" onClick={signoutHandler}>Sair</Link>
+                                    <button onClick={signoutHandler}>Sair</button>
                                 </ul>
                             </div>
                             :
@@ -91,7 +107,7 @@ function App() {
                         <Route path="/signin" component={SigninPage} />
                         <Route path="/product/:id" render={(props) => <ProductPage {...props} setCart={setCart} />} />
                         {/* props é todas as props que o component router passa pro componente de página */}
-                        <Route path="/cart/:id?" component={CartPage} /> {/* ? porque o id é opcional */}
+                        <ProtectedRoute path="/cart/:id?" component={CartPage} isAuth={isAuth} /> {/* ? porque o id é opcional */}
                         <Route path="/" exact={true} component={HomePage} />
                     </div>
                 </main>

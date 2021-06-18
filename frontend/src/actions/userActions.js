@@ -37,9 +37,17 @@ const register = (name, email, password) => async (dispatch) => {
 }
 
 const signout = () => (dispatch) => {
+    const Cookies = Cookie.get()
+
+    console.log(Cookies, 'antes')
+
+    console.log(localStorage, 'antes')
     localStorage.removeItem('userInfo');
     localStorage.removeItem('cartItems');
+    Cookie.remove('userInfo');
     dispatch({ type: USER_SIGNOUT });
+    console.log(localStorage, 'depois',)
+    console.log(Cookies, 'depois')
 }
 
 export { signin, register, signout };
