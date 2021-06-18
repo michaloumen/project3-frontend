@@ -2,18 +2,22 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import CheckoutSteps from '../components/CheckoutSteps';
+import { useHistory } from "react-router-dom";
 
 function PlaceOrderPage(props) {
+    let history = useHistory();
     const cart = useSelector(state => state.cart);
     const dispatch = useDispatch();
 
     const { cartItems, shipping, payment } = cart;
-    if (!shipping) {
-        props.history.push("/shipping");
+    if (!shipping.address) {
+        history.push("/shipping");
+    } else if (!payment.paymentMethod) {
+        history.push("/payment");
     }
-    if (!payment) {
-        props.history.push("/payment")
-    }
+    /*     if (!payment) {
+            history.push("/payment")
+        } */
 
     /*     useEffect(() => {
             //

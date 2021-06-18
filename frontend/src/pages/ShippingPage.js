@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { saveShipping } from '../actions/cartActions';
 import CheckoutSteps from '../components/CheckoutSteps';
+import { useHistory } from "react-router-dom";
 
 function ShippingPage(props) {
 
@@ -9,11 +10,12 @@ function ShippingPage(props) {
     const [city, setCity] = useState('');
     const [postalCode, setPostalCode] = useState('');
     const dispatch = useDispatch();
+    let history = useHistory();
 
     const submitHandler = (e) => {
         e.preventDefault();
         dispatch(saveShipping({ address, city, postalCode }));
-        props.history.push('payment');
+        history.push('payment');
     }
 
     return <div>

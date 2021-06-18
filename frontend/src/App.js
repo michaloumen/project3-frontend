@@ -99,10 +99,10 @@ function App(props) {
                 </aside>
                 <main className="main">
                     <div className="content">
-                        <Route path="/placeorder" component={PlaceOrderPage} />
-                        <Route path="/payment" component={PaymentPage} />
-                        <Route path="/shipping" component={ShippingPage} />
-                        <Route path="/products" component={AddProductPage} />
+                        <ProtectedRoute path="/placeorder" component={PlaceOrderPage} isAuth={isAuth} />
+                        <ProtectedRoute path="/payment" component={PaymentPage} isAuth={isAuth} />
+                        <ProtectedRoute path="/shipping" component={ShippingPage} isAuth={isAuth} />
+                        <ProtectedRoute path="/products" component={AddProductPage} isAuth={isAuth} />
                         <Route path="/register" component={RegisterPage} />
                         <Route path="/signin" component={SigninPage} />
                         <Route path="/product/:id" render={(props) => <ProductPage {...props} setCart={setCart} />} />

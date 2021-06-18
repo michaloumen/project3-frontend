@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { savePaymentMethod } from '../actions/cartActions';
 import CheckoutSteps from '../components/CheckoutSteps';
+import { useHistory } from "react-router-dom";
 
 function PaymentPage(props) {
     /*     const cart = useSelector(state => state.cart);
@@ -9,12 +10,13 @@ function PaymentPage(props) {
         if (!shippingAddress) {
             props.history.push('/shipping');
         } */ //só vai ir pra pagamento se já tiver colocar o endereço mas não deu certo
+    let history = useHistory();
     const [paymentMethod, setPaymentMethod] = useState('Paypal');
     const dispatch = useDispatch();
     const submitHandler = (e) => {
         e.preventDefault();
         dispatch(savePaymentMethod(paymentMethod));
-        props.history.push('placeorder');
+        history.push('placeorder');
     };
 
     return <div>
