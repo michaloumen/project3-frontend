@@ -7,6 +7,7 @@ import { useHistory } from "react-router-dom";
 function PlaceOrderPage() {
     let history = useHistory();
     const cart = useSelector(state => state.cart);
+    console.log(cart)
 
     return (
         <div>

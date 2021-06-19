@@ -13,7 +13,6 @@ function PaymentPage(props) {
         e.preventDefault();
         dispatch(savePaymentMethod(paymentMethod));
         history.push('/placeorder');
-        console.log('oi')
     };
 
     return (

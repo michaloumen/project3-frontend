@@ -29,7 +29,7 @@ function cartReducer(state = { cartItems: [], shipping: {}, payment: {} }, actio
                 cartItems: action.payload
             }
         case CART_SAVE_SHIPPING:
-            return { ...state, shippingAdress: action.payload }
+            return { ...state, shippingAddress: action.payload }
         case CART_SAVE_PAYMENT_METHOD:
             return { ...state, paymentMethod: action.payload }
         default:

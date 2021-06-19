@@ -40,7 +40,7 @@ const signout = () => (dispatch) => {
     const Cookies = Cookie.get()
     localStorage.removeItem('userInfo');
     localStorage.removeItem('cartItems');
-    localStorage.removeItem('shippingAdress')
+    localStorage.removeItem('shippingAddress')
     Cookie.remove('userInfo');
     dispatch({ type: USER_SIGNOUT });
 }

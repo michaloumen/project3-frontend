@@ -16,7 +16,7 @@ function ShippingPage(props) {
     console.log(userInfo)
     const submitHandler = (e) => {
         e.preventDefault(); //dispatch save shipping address action
-        dispatch(saveShipping({ fullName, address, city, postalCode }));
+        saveShipping({ fullName, address, city, postalCode })(dispatch);
         history.push('/payment');
     }
 
