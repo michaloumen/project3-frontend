@@ -34,7 +34,7 @@ function PaymentPage(props) {
                     ></input>
                     <label htmlFor="paypal">Paypal</label>
                 </div>
-                <button className="button pŕimary buttonPayment" type="submit">Continuar</button>
+                <button className="button pŕimary full-width" type="submit">Continuar</button>
             </form>
         </div>
     )

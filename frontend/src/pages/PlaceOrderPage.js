@@ -7,15 +7,24 @@ import { useHistory } from "react-router-dom";
 function PlaceOrderPage() {
     let history = useHistory();
     const cart = useSelector(state => state.cart);
-    console.log(cart)
+
+    const toPrice = (num) => Number(num.toFixed(2)); //5.123 => '5.12' => 5.12
+    cart.itemsPrice = toPrice(cart.cartItems.reduce((a, c) => a + c.qty * c.price, 0));
+
+    cart.taxPrice = toPrice(0.02 * cart.itemsPrice);
+    cart.totalPrice = toPrice(cart.itemsPrice + cart.taxPrice);
+
+    const placeOrderHandler = () => {
+
+    }
 
     return (
         <div>
             <CheckoutSteps step1 step2 step3 step4></CheckoutSteps>
-            <div className="row top">
+            <div className="row">
                 <div className="col-2">
                     <ul>
-                        <li>
+                        <div>
                             <div className="card card-body">
                                 <h2>Encomenda</h2>
                                 <p>
@@ -24,50 +33,75 @@ function PlaceOrderPage() {
                                     {cart.shippingAddress.city}, {cart.shippingAddress.postalCode}
                                 </p>
                             </div>
-                        </li>
-                        <li>
+                        </div>
+                        <div>
                             <div className="card card-body">
                                 <h2>Pagamento</h2>
                                 <p>
                                     <strong>Method: </strong> {cart.paymentMethod}
                                 </p>
                             </div>
-                        </li>
-                        <li>
+                        </div>
+                        <div>
                             <div className="card card-body">
                                 <h2>Tipo de pagamento</h2>
                                 <ul>
                                     {cart.cartItems.map(item =>
-                                        <li>
-                                            <div className="cart-image">
-                                                <img src={item.image} alt="product" />
+                                        <div>
+                                            <div className="row">
+                                                <img className="small" src={item.image} alt="product" />
                                             </div>
-                                            <div className="cart-name">
-                                                <div>
-                                                    <Link to={"/product/" + item.product}>
-                                                        {item.name}
-                                                    </Link>
-
-                                                </div>
+                                            <div className="min-30">
+                                                <Link to={"/product/" + item.product}>
+                                                    {item.name}
+                                                </Link>
                                             </div>
-                                            <div className="cart-price">
+                                            <div className="cart price">
                                                 {item.qty} x R$ {item.price} = ${item.qty * item.price}
                                             </div>
-                                        </li>
+                                        </div>
                                     )}
                                 </ul>
                             </div>
-                        </li>
+                        </div>
                     </ul>
                 </div>
                 <div className="col-1">
-                    <ul>
-                        <li>
+                    <div className="card card-body">
+                        <ul className="orderSumary">
 
-                        </li>
-                    </ul>
+                            <h2>Resumo do Pedido</h2>
+
+
+                            <div className="row">
+                                <div>Itens</div>
+                                <div>R$ {cart.itemsPrice}</div>
+                            </div>
+
+                            <div className="row">
+                                <div>Frete</div>
+                                <div>R$ {cart.taxPrice}</div>
+                            </div>
+
+
+                            <div className="row">
+                                <div><strong>Total</strong></div>
+                                <div><strong>R$ {cart.totalPrice}</strong></div>
+                            </div>
+
+
+                            <button
+                                type="button"
+                                onClick={placeOrderHandler}
+                                className="primary button full-width"
+                                disabled={cart.cartItems.length === 0}
+                            >
+                                Fazer pedido
+                            </button>
+
+                        </ul>
+                    </div>
                 </div>
-
             </div>
         </div>
     )
