@@ -3,8 +3,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addToCart, removeFromCart } from '../actions/cartActions';
 import { Link } from 'react-router-dom';
 import { withRouter } from 'react-router-dom';
+import { useHistory } from "react-router-dom";
 
 function CartPage(props) {
+    let history = useHistory();
     const cart = useSelector(state => state.cart);
     const { cartItems } = cart;
     console.log(cartItems)
@@ -24,7 +26,7 @@ function CartPage(props) {
         }, []) */
 
     const checkoutHandler = () => {
-        props.history.push("/shipping"); /* eu mudei isso aqui */
+        history.push("/shipping"); /* eu mudei isso aqui */
     }
 
     return <div className="cart">
@@ -45,20 +47,24 @@ function CartPage(props) {
                         </div>
                         :
                         cartItems.map(item =>
-                            <li>
+                            <li keu={item.product}>
                                 <div className="cart-image">
                                     <img src={item.image} alt="product" />
                                 </div>
                                 <div className="cart-name">
                                     <div>
-                                        <Link to={"/product/" + item.product}>
+                                        <Link to={`/product/${item.product}`}>
                                             {item.name}
                                         </Link>
 
                                     </div>
                                     <div>
                                         Quantidade:
-                                        <select value={item.qty} onChange={(e) => dispatch(addToCart(item.product, e.target.value))}>
+                                        <select value={item.qty}
+                                            onChange={(e) => dispatch(
+                                                addToCart(item.product, Number(e.target.value))
+                                            )
+                                            }>
                                             {[...Array(item.countInStock).keys()].map(x =>
                                                 <option key={x + 1} value={x + 1}>{x + 1}</option>
                                             )}

@@ -40,7 +40,6 @@ button {
 } 
 
 .grid-container{
-  display: grid;
   grid-template-areas: "header" "main" "footer";
   grid-template-columns: 1fr;
   grid-template-rows: 5rem 1fr 5rem;
@@ -410,15 +409,15 @@ tbody>tr:nth-child(odd){
 .checkout-steps{
   display: flex;
   justify-content: space-between;
-  width: 40rem;
   margin: 1rem auto;
 }
 
 .checkout-steps > div {
   border-top: .3rem #c0c0c0 solid;
   color: #c0c0c0;
-  flex: 1 1;
-  padding-top: 1rem;
+  flex: 1;
+  padding: 1rem;
+  font-weight: bold;
 }
 
 .checkout-steps > div.active {
@@ -433,4 +432,24 @@ tbody>tr:nth-child(odd){
 
 .navbar > a {
   margin-right: 0;
+}
+
+/* Signin */
+.formSignin {
+  max-width: 60rem;
+  margin: 0 auto;
+}
+.formSignin > div {
+  display: flex;
+  flex-direction: column;
+  margin: 1rem;
+}
+.formSignin label {
+  margin: 1rem 0;
+}
+
+/* Payment */
+.buttonPayment{
+  margin: 1rem 0;
+  padding: 1rem 4rem;
 }

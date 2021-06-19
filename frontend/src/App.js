@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Link, Redirect } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { signout } from './actions/userActions';
 import { clearCart } from './actions/cartActions';
+import { useHistory } from "react-router-dom";
 import './App.css';
 import HomePage from './pages/HomePage';
 import ProductPage from './pages/ProductPage';
@@ -16,6 +17,7 @@ import PlaceOrderPage from './pages/PlaceOrderPage';
 import ProtectedRoute from './components/ProtectedRoute';
 
 function App(props) {
+    let history = useHistory();
     const cartNumber = useSelector(state => state.cart);
     const { cartItems } = cartNumber;
     const userSignin = useSelector(state => state.userSignin);
@@ -38,6 +40,7 @@ function App(props) {
     const signoutHandler = () => {
         dispatch(clearCart());
         dispatch(signout());
+        window.location.href = '/' //reseta estado da pagina com refresh
     }
 
     const openMenu = () => {
@@ -67,7 +70,7 @@ function App(props) {
                                 <Link to="/products">Bem vind@, {userInfo.name}
                                 </Link>
                                 <ul>
-                                    <button onClick={signoutHandler}>Sair</button>
+                                    <button className="button primary" onClick={signoutHandler}>Sair</button>
                                 </ul>
                             </div>
                             :

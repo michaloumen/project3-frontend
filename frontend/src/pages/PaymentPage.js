@@ -5,44 +5,40 @@ import CheckoutSteps from '../components/CheckoutSteps';
 import { useHistory } from "react-router-dom";
 
 function PaymentPage(props) {
-    /*     const cart = useSelector(state => state.cart);
-        const { shippingAddress } = cart;
-        if (!shippingAddress) {
-            props.history.push('/shipping');
-        } */ //só vai ir pra pagamento se já tiver colocar o endereço mas não deu certo
     let history = useHistory();
+
     const [paymentMethod, setPaymentMethod] = useState('Paypal');
     const dispatch = useDispatch();
     const submitHandler = (e) => {
         e.preventDefault();
         dispatch(savePaymentMethod(paymentMethod));
-        history.push('placeorder');
+        history.push('/placeorder');
+        console.log('oi')
     };
 
-    return <div>
-        <CheckoutSteps step1 step2 step3></CheckoutSteps>
-        <div className="form">
-            <ul className="form-container">
-                <li>
-                    <h2>Pagamento</h2>
-                </li>
-                <li>
-                    <div>
-                        <input
-                            type="radio"
-                            name="paymentMethod"
-                            id="paypal"
-                            value="Paypal"
-                            onChange={(e) => setPaymentMethod(e.target.value)} />
-                        <label htmlFor="paypal">Paypal</label>
-                    </div>
-                </li>
-                <li>
-                    <button type="submit" className="button primary" onClick={submitHandler}>Continuar</button>
-                </li>
-            </ul>
+    return (
+        <div>
+            <CheckoutSteps step1 step2 step3></CheckoutSteps>
+            <form className="formSignin" onSubmit={submitHandler}>
+                <div>
+                    <h1>Método de Pagamento</h1>
+                </div>
+                <div>
+                    <input
+                        type="radio"
+                        id="paypal"
+                        value="Paypal"
+                        name="paymentMethod"
+                        required
+                        checked
+                        onChange={(e) => setPaymentMethod(e.target.value)}
+                    ></input>
+                    <label htmlFor="paypal">Paypal</label>
+                </div>
+                <button className="button pŕimary buttonPayment" type="submit">Continuar</button>
+            </form>
         </div>
-    </div>
+    )
 }
 
 export default PaymentPage;

@@ -3,9 +3,10 @@ import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { detailsProduct } from '../actions/productActions';
 import { addToCart } from '../actions/cartActions';
+import { useHistory } from "react-router-dom";
 
 function ProductPage(props) {
-    /* console.log(props) */
+    let history = useHistory();
     const [qty, setQty] = useState(1);
 
     const [products, setProduct] = useState([]);
@@ -33,7 +34,7 @@ function ProductPage(props) {
                     quantity: qty
                 }]) */
 
-        props.history.push("/cart/" + props.match.params.id + "?qty" + qty)
+        history.push("/cart/" + props.match.params.id + "?qty" + qty)
     }
 
     //filter
