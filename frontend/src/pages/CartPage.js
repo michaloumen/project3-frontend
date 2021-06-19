@@ -27,7 +27,7 @@ function CartPage(props) {
                         Carrinho de Compras
                     </h3>
                     <h3>
-                        Preço
+                        Valor por unidade
                     </h3>
                 </li>
                 {

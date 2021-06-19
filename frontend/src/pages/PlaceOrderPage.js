@@ -1,11 +1,19 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import CheckoutSteps from '../components/CheckoutSteps';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { useHistory } from "react-router-dom";
+import { createOrder } from '../actions/orderActions';
+import { ORDER_CREATE_RESET } from '../constants/orderContants';
+import LoadingBox from '../components/LoadingBox';
+import MessageBox from '../components/MessageBox';
 
 function PlaceOrderPage() {
     let history = useHistory();
+
+    const orderCreate = useSelector(state => state.orderCreate);
+    const { loading, success, error, order } = orderCreate;
+
     const cart = useSelector(state => state.cart);
 
     const toPrice = (num) => Number(num.toFixed(2)); //5.123 => '5.12' => 5.12
@@ -13,10 +21,18 @@ function PlaceOrderPage() {
 
     cart.taxPrice = toPrice(0.02 * cart.itemsPrice);
     cart.totalPrice = toPrice(cart.itemsPrice + cart.taxPrice);
+    const dispatch = useDispatch();
 
     const placeOrderHandler = () => {
+        dispatch(createOrder({ ...cart, orderItems: cart.cartItems }));
+    };
 
-    }
+    useEffect(() => {
+        if (success) {
+            history.push(`/order/${order._id}`);
+            dispatch({ type: ORDER_CREATE_RESET });
+        }
+    }, [dispatch, order, history, success]);
 
     return (
         <div>
@@ -26,7 +42,7 @@ function PlaceOrderPage() {
                     <ul>
                         <div>
                             <div className="card card-body">
-                                <h2>Encomenda</h2>
+                                <h2>Pedido</h2>
                                 <p>
                                     <strong>Name: </strong> {cart.shippingAddress.fullName} <br />
                                     <strong>Address: </strong> {cart.shippingAddress.address},
@@ -96,9 +112,10 @@ function PlaceOrderPage() {
                                 className="primary button full-width"
                                 disabled={cart.cartItems.length === 0}
                             >
-                                Fazer pedido
+                                Fechar pedido
                             </button>
-
+                            {loading && <LoadingBox></LoadingBox>}
+                            {error && <MessageBox variant="danger">{error}</MessageBox>}
                         </ul>
                     </div>
                 </div>

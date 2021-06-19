@@ -103,12 +103,12 @@ header {
 }
 
 .footer {
-  grid-area: footer;
   background-color: #203040;
   color: #ffffff;
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 1.5rem 0;
 }
 
 h1{
@@ -169,8 +169,8 @@ a:hover{
 }
 
 .product-image {
-  max-width: 34rem;
-  max-height: 34rem;
+  max-width: 30rem;
+  max-height: 30rem;
 }
 
 /* img */
