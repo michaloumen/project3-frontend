@@ -13,7 +13,7 @@ import {
 const signin = (email, password) => async (dispatch) => {
     dispatch({ type: USER_SIGNIN_REQUEST, payload: { email, password } });
     try {
-        const { data } = await Axios.post("http://localhost:5000/api/users/signin", { email, password });
+        const { data } = await Axios.post(`${process.env.REACT_APP_PORT}/api/users/signin`, { email, password });
         /* console.log(data) */
         dispatch({ type: USER_SIGNIN_SUCCESS, payload: data });
         Cookie.set('userInfo', JSON.stringify(data)); //se fehcar a aplicação e abrir, vai ficar aberto nesse cookie 
@@ -26,7 +26,7 @@ const signin = (email, password) => async (dispatch) => {
 const register = (name, email, password) => async (dispatch) => {
     dispatch({ type: USER_REGISTER_REQUEST, payload: { name, email, password } });
     try {
-        const { data } = await Axios.post("http://localhost:5000/api/users/register", { name, email, password });
+        const { data } = await Axios.post(`${process.env.REACT_APP_PORT}/api/users/register`, { name, email, password });
         /* console.log(data) */
         dispatch({ type: USER_REGISTER_SUCCESS, payload: data });
         Cookie.set('userInfo', JSON.stringify(data)); //se fehcar a aplicação e abrir, vai ficar aberto nesse cookie 

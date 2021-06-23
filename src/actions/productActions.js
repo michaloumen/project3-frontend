@@ -17,7 +17,7 @@ import Axios from 'axios';
 const listProducts = () => async (dispatch) => {
     try {
         dispatch({ type: PRODUCT_LIST_REQUEST });
-        const { data } = await Axios.get("http://localhost:5000/api/products");
+        const { data } = await Axios.get(`${process.env.REACT_APP_PORT}/api/products`);
         dispatch({ type: PRODUCT_LIST_SUCCESS, payload: data });
     } catch (error) {
         dispatch({ type: PRODUCT_LIST_FAIL, payload: error.message });
@@ -30,14 +30,14 @@ const saveProduct = (product) => async (dispatch, getState) => {
         dispatch({ type: PRODUCT_SAVE_REQUEST, payload: product });
         const { userSignin: { userInfo } } = getState();
         if (!product._id) {
-            const { data } = await Axios.post('http://localhost:5000/api/products', product, {
+            const { data } = await Axios.post(`${process.env.REACT_APP_PORT}/api/products`, product, {
                 headers: {
                     'Authorization': 'Bearer' + userInfo.token
                 },
             });
             dispatch({ type: PRODUCT_SAVE_SUCCESS, payload: data });
         } else {
-            const { data } = await Axios.put('http://localhost:5000/api/products/' + product._id, product, {
+            const { data } = await Axios.put(`${process.env.REACT_APP_PORT}/api/products/` + product._id, product, {
                 headers: {
                     'Authorization': 'Bearer' + userInfo.token
                 },
@@ -53,7 +53,7 @@ const saveProduct = (product) => async (dispatch, getState) => {
 const detailsProduct = (productId) => async (dispatch) => {
     try {
         dispatch({ type: PRODUCT_DETAILS_REQUEST, payload: productId });
-        const { data } = await Axios.get("http://localhost:5000/api/products/" + productId);
+        const { data } = await Axios.get(`${process.env.REACT_APP_PORT}/api/products/` + productId);
         dispatch({ type: PRODUCT_DETAILS_SUCCESS, payload: data });
     } catch (error) {
         dispatch({ type: PRODUCT_DETAILS_FAIL, payload: error.message })
@@ -64,7 +64,7 @@ const deleteProduct = (productId) => async (dispatch, getState) => {
     try {
         const { userSignin: { userInfo } } = getState();
         dispatch({ type: PRODUCT_DELETE_REQUEST, payload: productId });
-        const { data } = await Axios.delete("http://localhost:5000/api/products/" + productId, {
+        const { data } = await Axios.delete(`${process.env.REACT_APP_PORT}/api/products/` + productId, {
             headers: {
                 Authorization: 'Barear' + userInfo.token
             }
@@ -75,4 +75,4 @@ const deleteProduct = (productId) => async (dispatch, getState) => {
     }
 }
 
-export { listProducts, detailsProduct, saveProduct, deleteProduct }
+export { listProducts, detailsProduct, saveProduct, deleteProduct };

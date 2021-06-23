@@ -34,18 +34,18 @@ function OrderPage() {
         <MessageBox variant="danger">{error}</MessageBox>
     ) : (
         <div>
-            <h1>Order {order._id}</h1>
+            <h1>Número do pedido: {order._id}</h1>
             <div className="row top">
                 <div className="col-2">
                     <ul>
                         <li>
                             <div className="card card-body">
-                                <h2>Shippring</h2>
+                                <h2>Sua compra foi efetuada com sucesso 🎉</h2>
                                 {
                                     cart &&
                                     <p>
-                                        <strong>Name:</strong> {cart.shippingAddress.fullName} <br />
-                                        <strong>Address: </strong> {cart.shippingAddress.address},
+                                        <strong>Nome:</strong> {cart.shippingAddress.fullName} <br />
+                                        <strong>Endereço: </strong> {cart.shippingAddress.address},
                                         {cart.shippingAddress.city},{' '}
                                         {cart.shippingAddress.postalCode},
                                         {cart.shippingAddress.country}
@@ -55,15 +55,15 @@ function OrderPage() {
                         </li>
                         <li>
                             <div className="card card-body">
-                                <h2>Payment</h2>
+                                <h2>Pagamento</h2>
                                 <p>
-                                    <strong>Method:</strong> {order.paymentMethod}
+                                    <strong>Método:</strong> {order.paymentMethod}
                                 </p>
                             </div>
                         </li>
                         <li>
                             <div className="card card-body">
-                                <h2>Order Items</h2>
+                                <h2>Resumo dos pedidos</h2>
                                 <ul>
                                     {order.orderItems.map((item) => (
                                         <li key={item.product}>
@@ -82,7 +82,7 @@ function OrderPage() {
                                                 </div>
 
                                                 <div>
-                                                    {item.qty} x ${item.price} = ${item.qty * item.price}
+                                                    {item.qty} x ${item.price} = R$ {item.qty * item.price}
                                                 </div>
                                             </div>
                                         </li>
