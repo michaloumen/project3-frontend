@@ -3,12 +3,15 @@ html {
   box-sizing: border-box;
 }
 
+li{
+  list-style: none;
+}
+
 body{
   font-size: 1.6rem;
   height: 100vh;
   margin: 0;
   font-family: Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
 }
 
 button {
@@ -31,6 +34,10 @@ button {
   margin-left: 1rem;
 }
 
+.button-cart{
+  margin-top: 2rem;
+}
+
 .text-center {
   text-align: center;
 }
@@ -41,7 +48,7 @@ button {
 } 
 
 .grid-container{
-  grid-template-areas: "header" "main" "footer";
+  grid-template-areas: "header" "main";
   grid-template-columns: 1fr;
   grid-template-rows: 5rem 1fr 5rem;
   height: 100%;
@@ -75,7 +82,7 @@ header {
 }
 
 .header-links {
-  padding-right: 2rem;
+  padding-right: 0rem;
   display: flex;
   align-items: center;
 }
@@ -83,6 +90,10 @@ header {
 .navbar > ul {
   padding-left: 0;
 }
+
+/* .welcomeNavbar {
+  margin: 0;
+} */
 
 .header-links a{
   color: #ffffff;
@@ -179,7 +190,7 @@ img {
 }
 
 img.small {
-  max-width: 5rem;
+  max-width: 8rem;
   width: 100%;
 }
 
@@ -189,7 +200,7 @@ img.medium {
 }
 
 img.large {
-  width: 100%;
+  width: 70%;
 }
 
 /* tentando adicionar um pouco de responsividade mas não deu muito certo kk */
@@ -241,13 +252,8 @@ img.large {
 }
 
 .details-image {
-  flex: 2 1 60rem;
-}
-/* não notei a diferença do details-image. Testar isso depois */
-
-.details-image img {
-  max-width: 60rem;
-  widows: 100%;
+  max-width: 100%;
+  margin-right: -10rem;
 }
 
 .details-info {
@@ -295,6 +301,10 @@ img.large {
   border: .1rem #404040 solid;
 }
 
+.buttonLogout {
+  padding: 0.5rem 1rem;
+}
+
 /* Cart */
 .cart {
   /* border: 0.1rem #c0c0c0 solid; */
@@ -310,7 +320,9 @@ img.large {
   flex: 1 1 30rem;
   background-color: #f0f0f0;
   border-radius: 0.5rem;
-  padding: 1rem 40rem;
+  /* padding: 1rem 40rem; */
+  text-align: center;
+  padding: 5rem;
 }
 .cart-list-container {
   padding: 0;
@@ -336,6 +348,7 @@ img.large {
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
+
 }
 
 .cart-image{
@@ -348,8 +361,8 @@ img.large {
 
 .cart-price{
   flex: 1 1;
-  font-size: 2.5rem;
-  text-align: right;
+  font-size: 2rem;
+  text-align: left;
 }
 
 /* forms */
@@ -396,6 +409,7 @@ input{
 
 .table{
   width: 100%;
+  overflow-x: scroll;
 }
 
 .th{
@@ -456,6 +470,9 @@ tbody>tr:nth-child(odd){
   justify-content: space-between;
   align-items: center;
 }
+.row.top {
+  align-items: flex-start;
+}
 
 .col-1 {
   flex: 1 1 25rem;
@@ -471,6 +488,7 @@ tbody>tr:nth-child(odd){
   border-radius: 0.5rem;
   margin: 1rem;
 }
+
 .card-body {
   padding: 1rem;
 }

@@ -7,6 +7,7 @@ import { useHistory } from "react-router-dom";
 
 function ProductPage(props) {
     let history = useHistory();
+
     const [qty, setQty] = useState(1);
 
     const [products, setProduct] = useState([]);
@@ -46,8 +47,8 @@ function ProductPage(props) {
             error ? <div>{error}</div> :
                 (
                     <div className="details">
-                        <div className="details-image">
-                            <img src={product.image} alt="product"></img>
+                        <div>
+                            <img className="details-image" src={product.image} alt="product"></img>
                         </div>
                         <div className="details-info">
                             <ul>

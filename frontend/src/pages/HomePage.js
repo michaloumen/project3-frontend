@@ -4,20 +4,9 @@ import { useSelector, useDispatch } from 'react-redux';
 import { listProducts } from '../actions/productActions';
 
 function HomePage(props) {
-  /* HOOK */
   const productList = useSelector(state => state.productList);
   const { products, loading, error } = productList;
   const dispatch = useDispatch();
-
-  /*   const getProducts = async () => {
-      try {
-        const products = await ApiService.getProducts();
-  
-        setProduct(products);
-      } catch (error) {
-        console.log(error);
-      }
-    }; */
 
   useEffect(() => {
     dispatch(listProducts());

@@ -39,48 +39,44 @@ function PlaceOrderPage() {
             <CheckoutSteps step1 step2 step3 step4></CheckoutSteps>
             <div className="row">
                 <div className="col-2">
-                    <ul>
-                        <div>
-                            <div className="card card-body">
-                                <h2>Pedido</h2>
-                                <p>
-                                    <strong>Name: </strong> {cart.shippingAddress.fullName} <br />
-                                    <strong>Address: </strong> {cart.shippingAddress.address},
-                                    {cart.shippingAddress.city}, {cart.shippingAddress.postalCode}
-                                </p>
-                            </div>
+                    <div>
+                        <div className="card card-body">
+                            <h2>Pedido</h2>
+                            <p>
+                                <strong>Name: </strong> {cart.shippingAddress.fullName} <br />
+                                <strong>Address: </strong> {cart.shippingAddress.address},
+                                {cart.shippingAddress.city}, {cart.shippingAddress.postalCode}
+                            </p>
                         </div>
-                        <div>
-                            <div className="card card-body">
-                                <h2>Pagamento</h2>
-                                <p>
-                                    <strong>Method: </strong> {cart.paymentMethod}
-                                </p>
-                            </div>
+                    </div>
+                    <div>
+                        <div className="card card-body">
+                            <h2>Pagamento</h2>
+                            <p>
+                                <strong>Method: </strong> {cart.paymentMethod}
+                            </p>
                         </div>
-                        <div>
-                            <div className="card card-body">
-                                <h2>Tipo de pagamento</h2>
-                                <ul>
-                                    {cart.cartItems.map(item =>
-                                        <div>
-                                            <div className="row">
-                                                <img className="small" src={item.image} alt="product" />
-                                            </div>
-                                            <div className="min-30">
-                                                <Link to={"/product/" + item.product}>
-                                                    {item.name}
-                                                </Link>
-                                            </div>
-                                            <div className="cart price">
-                                                {item.qty} x R$ {item.price} = ${item.qty * item.price}
-                                            </div>
-                                        </div>
-                                    )}
-                                </ul>
-                            </div>
+                    </div>
+                    <div>
+                        <div className="card card-body">
+                            <h2>Tipo de pagamento</h2>
+                            {cart.cartItems.map(item =>
+                                <div>
+                                    <div className="row">
+                                        <img className="small" src={item.image} alt="product" />
+                                    </div>
+                                    <div className="min-30">
+                                        <Link to={"/product/" + item.product}>
+                                            {item.name}
+                                        </Link>
+                                    </div>
+                                    <div className="cart price">
+                                        {item.qty} x R$ {item.price} = ${item.qty * item.price}
+                                    </div>
+                                </div>
+                            )}
                         </div>
-                    </ul>
+                    </div>
                 </div>
                 <div className="col-1">
                     <div className="card card-body">

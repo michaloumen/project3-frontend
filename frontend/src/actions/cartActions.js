@@ -1,5 +1,4 @@
 import axios from "axios";
-import Cookie from "js-cookie";
 import {
     CART_ADD_ITEM,
     CART_REMOVE_ITEM,
@@ -9,7 +8,7 @@ import {
 } from "../constants/cartConstants";
 
 const addToCart = (productId, qty) => async (dispatch, getState) => {
-    const { data } = await axios.get("http://localhost:5000/api/products/" + productId);
+    const { data } = await axios.get(`http://localhost:5000/api/products/` + productId);
     dispatch({
         type: CART_ADD_ITEM, payload: {
             product: data._id,
@@ -30,7 +29,6 @@ const removeFromCart = (productId) => (dispatch, getState) => {
 
 const saveShipping = (data) => (dispatch) => {
     dispatch({ type: CART_SAVE_SHIPPING, payload: data });
-    /* localStorage.setItem('shippingAddress', JSON.stringify(data)); */
 };
 
 const savePaymentMethod = (data) => (dispatch) => {

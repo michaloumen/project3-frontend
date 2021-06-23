@@ -77,9 +77,12 @@ function CartPage(props) {
                 Subtotal ({cartItems.reduce((a, c) => a + Number(c.qty), 0)} items)
                 :
                 $ {cartItems.reduce((a, c) => a + (Number(c.price) * Number(c.qty)), 0).toFixed(2)}
-                <button onClick={checkoutHandler} className="button primary full-width" disabled={cartItems.length === 0}>
-                    Prossiga para pagamento
-                </button>
+                <div>
+                    <button onClick={checkoutHandler} className="button primary button-cart" disabled={cartItems.length === 0}>
+                        Prossiga para pagamento
+                    </button>
+                </div>
+
             </h3>
         </div>
     </div>

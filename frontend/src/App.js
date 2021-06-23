@@ -15,6 +15,7 @@ import ShippingPage from './pages/ShippingPage';
 import PaymentPage from './pages/PaymentPage';
 import PlaceOrderPage from './pages/PlaceOrderPage';
 import ProtectedRoute from './components/ProtectedRoute';
+import OrderPage from './pages/OrderPage';
 
 function App(props) {
     let history = useHistory();
@@ -67,10 +68,10 @@ function App(props) {
                     {
                         userInfo && isAuth ?
                             <div className="navbar">
-                                <Link to="/products">Bem vind@, {userInfo.name}
+                                <Link to="/products" className="welcomeNavbar">Bem vind@, {userInfo.name}
                                 </Link>
                                 <ul>
-                                    <button className="button primary" onClick={signoutHandler}>Sair</button>
+                                    <button className="button primary buttonLogout" onClick={signoutHandler}>Sair</button>
                                 </ul>
                             </div>
                             :
@@ -102,6 +103,7 @@ function App(props) {
                 </aside>
                 <main className="main">
                     <div className="content">
+                        <ProtectedRoute path="/order/:id" component={OrderPage} isAuth={isAuth} />
                         <ProtectedRoute path="/placeorder" component={PlaceOrderPage} isAuth={isAuth} />
                         <ProtectedRoute path="/payment" component={PaymentPage} isAuth={isAuth} />
                         <ProtectedRoute path="/shipping" component={ShippingPage} isAuth={isAuth} />

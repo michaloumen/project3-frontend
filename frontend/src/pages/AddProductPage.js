@@ -133,9 +133,9 @@ function AddProductPage(props) {
         }
 
         <div className="product-list">
-            <table className="table">
+            <table>
                 <thead>
-                    <tr>
+                    <tr className="table">
                         <th>ID</th>
                         <th>Nome</th>
                         <th>Preço</th>
