@@ -22,7 +22,6 @@ To run the project locally, after cloning and opening it on your computer, add t
 And in the terminal run: 
 
     $ npm install 
-    
     $ npm start
 
 ----------------------------
