@@ -13,7 +13,7 @@ The user can register to access the options to buy and sell products. In the pur
 If the user wants to sell their products, with the same login they can access the page to Create, Read, Update and Delete (CRUD) products. The project is structured but still under construction.
 
 ## Installing
-You can run it offline by downloading / cloning the project files and installing the environment variables or you can run my online instance from: [Link]
+You can run it offline by downloading / cloning the project files and installing the environment variables or you can run my online instance from [here](https://admiring-lumiere-653e19.netlify.app/).
 
 To run the project locally, after cloning and opening it on your computer, add the <b>.env </b>folder with the environment variables:
 
